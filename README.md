@@ -25,3 +25,4 @@ Iteracja oraz po kolei dokładne zadania do wykonania w obrębie danego user sto
 
 ### Twórcy aplikacji:
  - Michał Dela
+ - Wojciech Garncarz
