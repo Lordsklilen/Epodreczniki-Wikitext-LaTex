@@ -28,3 +28,4 @@ Iteracja oraz po kolei dokładne zadania do wykonania w obrębie danego user sto
  - Wojciech Garncarz
  - Tomasz Furtek
  - Gabriel Gołda
+ - Bartosz Kasza
