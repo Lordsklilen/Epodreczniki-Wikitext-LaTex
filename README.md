@@ -29,3 +29,4 @@ Iteracja oraz po kolei dokładne zadania do wykonania w obrębie danego user sto
  - Tomasz Furtek
  - Gabriel Gołda
  - Bartosz Kasza
+ - Klaudiusz Duda
