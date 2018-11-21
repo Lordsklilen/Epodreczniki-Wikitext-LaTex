@@ -23,7 +23,7 @@ public class MainController {
     @RequestMapping("/probny")
     POJOClass index()
     {
-        return new POJOClass(10,"jazda");
+        return new POJOClass(10,"Turbokangury");
     }
 
 /*
@@ -56,35 +56,23 @@ public class MainController {
 ///////uposledzona wersja wyswietlania, jesli mamy juz plik na naszym komputerze w miejscu okreslonym na sztywno jestesmy w stanie wyswietlic go w przegladarce
 //////ogarnac pobieranie, zeby zapisywal sie plik w konkretnym filderze naszej aplikacji, i z tamtego miejsca wczytywać go.
 
-    private static final String EXTERNAL_FILE_PATH = "C:/fileDownloadExample/";
+    private static final String EXTERNAL_FILE_PATH = ".\\ResourceFiles\\";
 
     @RequestMapping("/file/{fileName:.+}")
     public void downloadPDFResource(HttpServletRequest request, HttpServletResponse response,
                                     @PathVariable("fileName") String fileName) throws IOException {
-
         File file = new File(EXTERNAL_FILE_PATH + fileName);
+        System.out.println("path: " + file.getAbsolutePath());
         if (file.exists()) {
-
-            //get the mimetype
             String mimeType = URLConnection.guessContentTypeFromName(file.getName());
             if (mimeType == null) {
-                //unknown mimetype so set the mimetype to application/octet-stream
                 mimeType = "application/octet-stream";
             }
-
             response.setContentType(mimeType);
-
-
             response.setHeader("Content-Disposition", String.format("inline; filename=\"" + file.getName() + "\""));
-
-            //response.setHeader("Content-Disposition", String.format("attachment; filename=\"" + file.getName() + "\""));
-
             response.setContentLength((int) file.length());
-
             InputStream inputStream = new BufferedInputStream(new FileInputStream(file));
-
             FileCopyUtils.copy(inputStream, response.getOutputStream());
-
         }
     }
 
