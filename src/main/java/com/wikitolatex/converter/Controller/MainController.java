@@ -6,7 +6,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
@@ -19,6 +18,7 @@ import java.nio.file.Paths;
 @RequestMapping("/converter")
 public class MainController {
 
+    private static final String EXTERNAL_FILE_PATH = ".\\ResourceFiles\\";
     @RequestMapping("/index")
     String index()
     {
@@ -26,8 +26,6 @@ public class MainController {
     }
 
     //Displaying local pdf file in browser from direcotry "ResourceFiles"
-    private static final String EXTERNAL_FILE_PATH = ".\\ResourceFiles\\";
-
     @RequestMapping("/file/{fileName:.+}")
     public void downloadPDFResource(HttpServletRequest request, HttpServletResponse response,
                                     @PathVariable("fileName") String fileName) throws IOException {
