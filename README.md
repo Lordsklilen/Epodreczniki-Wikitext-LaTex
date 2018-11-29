@@ -11,21 +11,20 @@ Stworzenie środowiska REST z funkcją konwertowania plików Wikitext na pliki L
 ### Iteracje:
 Iteracja oraz po kolei dokładne zadania do wykonania w obrębie danego user story:
 
-3. Pobieranie plików pdf
-	 - Tworzenie konwertera 13 pkt
-	 - Przygotowanie się pod wydanie Release 8 pkt
-	 - Dokończenie i usprawnienie REST 5
 4. Pobieranie plików pdf
 	 - Kończenie konwertera 21 pkt
 	 - Stabilizacja Release 8 pkt
+	 - integracja z javy z C++ Release 8 pkt
 5. Pobieranie plików pdf
-	 - Zaczęcie tworzenia konwertera dla kilku plików 21 pkt 
+	 - Zaczęcie tworzenia konwertera dla kilku plików 30 pkt 
+6. Pobieranie plików pdf
+	 - Tworzenia konwertera dla kilku plików 30 pkt  
 
 
-### Szczegółowy plan na iterację 2:
-1. Tworzenia konwertera 13 pkt // Gabriello, Kamil, klaudiusz
-2. Dokończenie i usprawnienie REST 5 pkt // Kasza, Tomek, Olaf
-3. Przygotowanie się pod wydanie Release 8 pkt //  Michał, Wojtek
+### Szczegółowy plan na iterację 4:
+1. Wydanie Release - 8h / Michał, Wojtek
+2. Analiza Bisona(gramatyk) - 13h / Gabriel , Kamil, Klaudiusz
+3. Integracja javy z C++ - 8h / Tomek, Kasza
 
 
 
