@@ -39,6 +39,10 @@ public class MainController {
     public UploadFileResponse uploadFile(@RequestParam("file") MultipartFile file) {
         String fileName = fileStorageService.storeFile(file);
 
+        /*
+            There should be a conversion.
+         */
+
         String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path("/converter/downloadFile/")
                 .path(fileName)
@@ -52,6 +56,14 @@ public class MainController {
 
     @PostMapping("/uploadMultipleFiles")
     public List<UploadFileResponse> uploadMultipleFiles(@RequestParam("files") MultipartFile[] files) {
+
+        /*
+            There should be a conversion.
+         */
+
+        for(MultipartFile file : files)
+            System.out.println("\nConversion successful!\nFile converted: " + fileStorageService.storeFile(file));
+
         return Arrays.asList(files)
                 .stream()
                 .map(file -> uploadFile(file))
