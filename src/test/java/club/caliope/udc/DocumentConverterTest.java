@@ -3,10 +3,10 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 package club.caliope.udc;
 
-import club.caliope.udc.DocumentConverter;
-import club.caliope.udc.InputFormat;
-import club.caliope.udc.OutputFormat;
-import club.caliope.udc.Settings;
+import com.wikitolatex.converter.Pandoc.DocumentConverter;
+import com.wikitolatex.converter.Pandoc.InputFormat;
+import com.wikitolatex.converter.Pandoc.OutputFormat;
+import com.wikitolatex.converter.Pandoc.Settings;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
