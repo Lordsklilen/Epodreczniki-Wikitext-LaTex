@@ -84,7 +84,7 @@ public class DocumentConverter {
     /** Converts the input document.
      */
     public void convert() {
-        String command = String.format("\"%s\" \"%s\" %s --output=\"%s\"", settings.getPandocExec(), fromFile.getAbsoluteFile(), fromFormat, toFormat, extraOptions, toFile.getAbsoluteFile());
+        String command = String.format("\"%s\" \"%s\" %s --output=\"%s\"", settings.getPandocExec(), fromFile.getAbsoluteFile(), extraOptions, toFile.getAbsoluteFile());
         int status;
         try {
             System.out.println("Executing: " + command);
