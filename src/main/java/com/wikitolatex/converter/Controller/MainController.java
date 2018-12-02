@@ -29,8 +29,7 @@ public class MainController {
     //private static final String EXTERNAL_FILE_PATH = ".\\ResourceFiles\\";
 
     @RequestMapping("/index")
-    String index()
-    {
+    String index() {
         return "index page";
     }
 
@@ -61,7 +60,7 @@ public class MainController {
             There should be a conversion.
          */
 
-        for(MultipartFile file : files)
+        for (MultipartFile file : files)
             System.out.println("\nConversion successful!\nFile converted: " + fileStorageService.storeFile(file));
 
         return Arrays.asList(files)
@@ -84,7 +83,7 @@ public class MainController {
         }
 
         // Fallback to the default content type if type could not be determined
-        if(contentType == null) {
+        if (contentType == null) {
             contentType = "application/octet-stream";
         }
 
@@ -96,71 +95,4 @@ public class MainController {
                 .header(HttpHeaders.CONTENT_DISPOSITION, "inline; filename=\"" + resource.getFilename() + "\"")
                 .body(resource);
     }
-
-    /*
-    Outdated code from last iteration
-
-    //Displaying local pdf file in browser from "ResourceFiles" directory
-    @RequestMapping("/file/{fileName:.+}")
-    public void downloadPDFResource(HttpServletRequest request, HttpServletResponse response,
-                                    @PathVariable("fileName") String fileName) throws IOException {
-        File file = new File(EXTERNAL_FILE_PATH + fileName);
-        InputStream inputStream = null;
-        try {
-            String mimeType = URLConnection.guessContentTypeFromName(file.getName());
-            if (mimeType == null) {
-                mimeType = "application/octet-stream";
-            }
-            response.setContentType(mimeType);
-            response.setHeader("Content-Disposition", String.format("inline; filename=\"" + file.getName() + "\""));
-            response.setContentLength((int) file.length());
-            inputStream = new BufferedInputStream(new FileInputStream(file));
-            FileCopyUtils.copy(inputStream, response.getOutputStream());
-            System.out.println("\nConversion successful!\npath: " + file.getAbsolutePath());
-        } catch (FileNotFoundException e) {
-            System.err.println("\n" + fileName + ": File does not exist");
-            response.setContentType("text/html;charset=UTF-8");
-            throw new FileNotFound(fileName + ": File does not exist");
-        } catch (IOException e) {
-            System.err.println("\n" + fileName + ": File exists, but there was IOException");
-            response.setContentType("text/html;charset=UTF-8");
-            throw new IOException(fileName + ": File exists, but there was IOException");
-        } finally {
-            if (inputStream != null) {
-                try {
-                    inputStream.close();
-                } catch (IOException e) {
-                    response.setContentType("text/html;charset=UTF-8");
-                    throw e;
-                }
-            }
-        }
-    }
-    */
 }
-
-/*
-    @RequestMapping("/pdf/{fileName:.+}")
-    public void downloadPDFResource( HttpServletRequest request,
-                                     HttpServletResponse response,
-                                     @PathVariable("fileName") String fileName)
-    {
-
-        String dataDirectory = request.getServletContext().getContextPath();
-        Path file = Paths.get(dataDirectory, fileName);
-        if (Files.exists(file))
-        {
-            response.setContentType("application/pdf");
-            response.addHeader("Content-Disposition", "attachment; filename="+fileName);
-            try
-            {
-                Files.copy(file, response.getOutputStream());
-                response.getOutputStream().flush();
-            }
-            catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        }
-    }
-
-*/
