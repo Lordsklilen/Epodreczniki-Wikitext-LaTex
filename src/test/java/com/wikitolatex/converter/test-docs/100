@@ -1,0 +1,31 @@
+
+
+Z punktu widzenia zastosowań praktycznych często istotnym jest nie to ile energii można uzyskać ze źródła ale to jak szybko można ją  uzyskać (zamienić w użyteczną postać). Na przykład, ważnym parametrem samochodu, istotnym przy wyprzedzaniu, jest to jak szybko samochód przyspiesza tzn. jak szybko silnik wykonuje pracę związaną z rozpędzaniem samochodu. Inny przykład to, dwa dźwigi, które podnoszą jednakowe masy na jednakową wysokość {OPENAGHMATHJAX()}h{OPENAGHMATHJAX} ale w różnym czasie. Tak jak zostało to już pokazane na wcześniejszym przykładzie, każdy z dźwigów wykonuje taką samą pracę równą {OPENAGHMATHJAX()}mgh{OPENAGHMATHJAX}. Jednak jeden zdźwigów wykonuje tę pracę w czasie krótszym niż drugi. Mówimy, że ten dźwig ma większą moc.
+
+{OPENAGHDEFINITION(name="Moc")}Moc definiujemy jako ilość wykonanej pracy (lub przekazanej energii) do czasu w jakim została ona wykonana.{OPENAGHDEFINITION}
+
+Jeżeli praca {OPENAGHMATHJAX()}W{OPENAGHMATHJAX} została wykonana w czasie {OPENAGHMATHJAX()}t{OPENAGHMATHJAX} to średnia moc jest dana wzorem
+
+{OPENAGHMATHJAX( type="block")}\begin{equation}{\overset{{\text{__}}}{{P}}=\frac{W}{t}}\end{equation}{OPENAGHMATHJAX}
+[7.12]
+
+Dla stałej siły {OPENAGHMATHJAX()}F{OPENAGHMATHJAX} wzór ten przyjmuje postać
+
+{OPENAGHMATHJAX( type="block")}\begin{equation}{\overset{{\text{__}}}{{P}}=\frac{Fs}{t}=F\overline{{v}}}\end{equation}{OPENAGHMATHJAX}
+[7.13]
+
+Dla czasu {OPENAGHMATHJAX()}t\rightarrow 0{OPENAGHMATHJAX}  mówimy o mocy chwilowej
+
+{OPENAGHMATHJAX( type="block")}\begin{equation}{P=\frac{\mathit{dW}}{\mathit{dt}}}\end{equation}{OPENAGHMATHJAX}
+[7.14]
+
+
+Moc chwilową obliczamy jako pochodną pracy względem czasu.
+
+{OPENAGHDEFINITION(name="Jednostki")}Jednostką mocy w układzie SI jest wat (W); 1 W = 1 J/ s. Dla celów praktycznych powszechnie stosowaną jednostką mocy jest kilowat (kW), a jednostką energii (iloczyn mocy i czasu) jest kilowatogodzina (kWh).{OPENAGHDEFINITION}
+
+{openaghexercise name="Moc średnia" body="
+Teraz gdy znasz już definicję mocy średniej i odpowiednie jednostki spróbuj ocenić średnią moc zużywaną przez urządzenia elektryczne w twoim mieszkaniu. W tym celu odczytaj stan licznika energii elektrycznej, a następnie powtórz odczyt po 24 godzinach. Jaką wielkość rejestruje licznik i w jakich jednostkach? Na podstawie tych pomiarów oblicz moc średnią. Wynik zapisz poniżej.
+
+{OPENAGHMATHJAX()}P{OPENAGHMATHJAX}{OPENAGHMATHJAX()}_{średnia}= {OPENAGHMATHJAX} 
+"}
