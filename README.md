@@ -34,3 +34,6 @@ Iteracja oraz po kolei dokładne zadania do wykonania w obrębie danego user sto
  - Bartosz Kasza
  - Klaudiusz Duda
  - Kamil Ferenc
+
+
+https://imgur.com/a/9eBTpVA
