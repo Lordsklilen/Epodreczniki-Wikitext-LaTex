@@ -3,6 +3,8 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 package com.wikitolatex.converter.Pandoc;
 
+import org.springframework.stereotype.Component;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.UncheckedIOException;
@@ -15,6 +17,7 @@ import java.io.UncheckedIOException;
  * and Mac OS X. Read more about pandoc at http://pandoc.org/installing.html
  *
  */
+@Component
 public class DocumentConverter {
 
     private Settings settings;
@@ -84,7 +87,12 @@ public class DocumentConverter {
     /** Converts the input document.
      */
     public void convert() {
-        String command = String.format("\"%s\" \"%s\" %s --output=\"%s\"", settings.getPandocExec(), fromFile.getAbsoluteFile(), extraOptions, toFile.getAbsoluteFile());
+        String command;
+        if(toFormat == "pdf") {
+            command = String.format("\"%s\" \"%s\" %s --output=\"%s\"", settings.getPandocExec(), fromFile.getAbsoluteFile(), extraOptions, toFile.getAbsoluteFile());
+        }
+        else
+            command = String.format("\"%s\" \"%s\" --from=%s --to=%s %s --output=\"%s\"", settings.getPandocExec(), fromFile.getAbsoluteFile(), fromFormat, toFormat, extraOptions, toFile.getAbsoluteFile());
         int status;
         try {
             System.out.println("Executing: " + command);

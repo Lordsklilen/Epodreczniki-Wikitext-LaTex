@@ -1,5 +1,8 @@
 package com.wikitolatex.converter.Controller;
 
+import com.wikitolatex.converter.Pandoc.DocumentConverter;
+import com.wikitolatex.converter.Pandoc.InputFormat;
+import com.wikitolatex.converter.Pandoc.OutputFormat;
 import com.wikitolatex.converter.service.FileStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -9,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 import org.slf4j.Logger;
@@ -26,6 +31,9 @@ public class MainController {
     @Autowired
     private FileStorageService fileStorageService;
 
+    @Autowired
+    private DocumentConverter documentConverter;
+
     //private static final String EXTERNAL_FILE_PATH = ".\\ResourceFiles\\";
 
     @RequestMapping("/index")
@@ -35,17 +43,18 @@ public class MainController {
 
 
     @PostMapping("/uploadFile")
-    public UploadFileResponse uploadFile(@RequestParam("file") MultipartFile file) {
+    public UploadFileResponse uploadFile(@RequestParam("file") MultipartFile file) throws IOException {
         String fileName = fileStorageService.storeFile(file);
-
-        /*
-            There should be a conversion.
-         */
 
         String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path("/converter/downloadFile/")
                 .path(fileName)
                 .toUriString();
+
+        //konwersja z wiki do latexa, trzeba podmnienic obiekt fileFrom na ten wlasciwy
+        //documentConverter.fromFile(File fileFrom, InputFormat.TWIKI)
+        //        .toFile(new File("converter/downloadFile/"+fileName), OutputFormat.LATEX)
+        //        .convert();
 
         System.out.println("\nConversion successful!\nFile converted: " + fileName);
 
@@ -65,7 +74,14 @@ public class MainController {
 
         return Arrays.asList(files)
                 .stream()
-                .map(file -> uploadFile(file))
+                .map(file -> {
+                    try {
+                        return uploadFile(file);
+                    } catch (IOException e) {
+                        return null;
+                    }
+
+                })
                 .collect(Collectors.toList());
     }
 
