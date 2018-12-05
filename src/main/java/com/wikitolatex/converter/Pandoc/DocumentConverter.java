@@ -8,8 +8,7 @@ import org.springframework.stereotype.Component;
 import java.io.File;
 import java.io.IOException;
 import java.io.UncheckedIOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.util.Arrays;
 
 /**
  * Converts documents from one format to another. This class needs
@@ -38,8 +37,13 @@ public class DocumentConverter {
      */
     public DocumentConverter() {
         settings = new Settings();
-        File a = new File("..//pandoc");
-        settings.setPandocExec(a.getAbsolutePath());
+        String[] path = System.getProperty("user.dir").split("\\\\");
+        path = ArrayHelper.pop(path);
+        String res = String.join("\\",path);
+        res+="\\pandoc.exe";
+        // res ="E:\\Dane\\zad dom\\GitHub\\pandoc.exe";
+        System.out.println(res);
+        settings.setPandocExec(res);
         extraOptions = "";
     }
 
@@ -112,3 +116,17 @@ public class DocumentConverter {
     }
 
 }
+
+class ArrayHelper {
+    public static <T> T[] push(T[] arr, T item) {
+        T[] tmp = Arrays.copyOf(arr, arr.length + 1);
+        tmp[tmp.length - 1] = item;
+        return tmp;
+    }
+
+    public static <T> T[] pop(T[] arr) {
+        T[] tmp = Arrays.copyOf(arr, arr.length - 1);
+        return tmp;
+    }
+}
+
