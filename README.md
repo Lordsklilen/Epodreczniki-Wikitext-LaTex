@@ -41,5 +41,8 @@ https://docs.google.com/document/d/1POlZz4-MCON0zdBwQJDdNDar3Vn-kYCJhn4aoggpO3Q/
  - Kamil Ferenc
  
  
- #wgląd do class diagram
+ ### Wgląd do class diagram
 https://imgur.com/a/9eBTpVA
+
+### Wgląd do deployment diagram
+https://imgur.com/a/l99Bvky
