@@ -20,18 +20,14 @@ public class DocumentConverterTest {
     private DocumentConverter instance;
 
 
-    private final File fromOdtFile = new File("test-docs/Con los ojos cerrados.odt");
-    private final File fromDocxFile = new File("test-docs/Con los ojos cerrados.docx");
-    private final File toAsciiFile = new File("test-docs/result.txt");
-    private final File toHtmlFile = new File("test-docs/result.html");
+    private final File fromOdtFile = new File("src/test/java/com/wikitolatex/converter/test-docs/Con los ojos cerrados.odt");
+    private final File fromDocxFile = new File("src/test/java/com/wikitolatex/converter/test-docs/Con los ojos cerrados.docx");
+    private final File toAsciiFile = new File("src/test/java/com/wikitolatex/converter/test-docs/result.txt");
+    private final File toHtmlFile = new File("src/test/java/com/wikitolatex/converter/test-docs/result.html");
 
     @Before
     public void setup() {
         instance = new DocumentConverter();
-        new DocumentConverter()
-                .fromFile(new File("result.tex"), InputFormat.LATEX)
-                .toFile(new File("result.pdf"), OutputFormat.PDF)
-                .convert();
     }
 
     @After
