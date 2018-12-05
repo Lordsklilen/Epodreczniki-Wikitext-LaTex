@@ -43,7 +43,7 @@ public class MainController {
 
 
     @PostMapping("/uploadFile")
-    public UploadFileResponse uploadFile(@RequestParam("file") MultipartFile file) throws IOException {
+    public UploadFileResponse uploadFile(@RequestParam("file") MultipartFile file){
         String fileName = fileStorageService.storeFile(file);
 
         String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
@@ -51,11 +51,12 @@ public class MainController {
                 .path(fileName)
                 .toUriString();
 
-        //konwersja z wiki do latexa, trzeba podmnienic obiekt fileFrom na ten wlasciwy
-        //documentConverter.fromFile(File fileFrom, InputFormat.TWIKI)
-        //        .toFile(new File("converter/downloadFile/"+fileName), OutputFormat.LATEX)
-        //        .convert();
-
+        documentConverter.fromFile(new File("./ResourceFiles/"+fileName), InputFormat.TWIKI)
+                .toFile(new File("converter/downloadFile/"+fileName), OutputFormat.LATEX)
+                .convert();
+        documentConverter.fromFile(new File("converter/downloadFile/"+fileName), InputFormat.LATEX)
+                .toFile(new File("converter/downloadFile/"+fileName+".pdf"),OutputFormat.PDF)
+                .convert();
         System.out.println("\nConversion successful!\nFile converted: " + fileName);
 
         return new UploadFileResponse(fileName, fileDownloadUri,
@@ -75,12 +76,7 @@ public class MainController {
         return Arrays.asList(files)
                 .stream()
                 .map(file -> {
-                    try {
                         return uploadFile(file);
-                    } catch (IOException e) {
-                        return null;
-                    }
-
                 })
                 .collect(Collectors.toList());
     }
