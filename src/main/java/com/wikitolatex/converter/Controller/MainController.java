@@ -52,9 +52,9 @@ public class MainController {
                 .toUriString();
 
         documentConverter.fromFile(new File("./ResourceFiles/"+fileName), InputFormat.TWIKI)
-                .toFile(new File("converter/downloadFile/"+fileName), OutputFormat.LATEX)
+                .toFile(new File("./ResourceFiles/"+fileName+".tex"), OutputFormat.LATEX)
                 .convert();
-        documentConverter.fromFile(new File("converter/downloadFile/"+fileName), InputFormat.LATEX)
+        documentConverter.fromFile(new File("./ResourceFiles/"+fileName+".tex"), InputFormat.LATEX)
                 .toFile(new File("converter/downloadFile/"+fileName+".pdf"),OutputFormat.PDF)
                 .convert();
         System.out.println("\nConversion successful!\nFile converted: " + fileName);
