@@ -8,6 +8,8 @@ import org.springframework.stereotype.Component;
 import java.io.File;
 import java.io.IOException;
 import java.io.UncheckedIOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 /**
  * Converts documents from one format to another. This class needs
@@ -36,7 +38,8 @@ public class DocumentConverter {
      */
     public DocumentConverter() {
         settings = new Settings();
-        settings.setPandocExec("pandoc");
+        File a = new File("..//pandoc");
+        settings.setPandocExec(a.getAbsolutePath());
         extraOptions = "";
     }
 
