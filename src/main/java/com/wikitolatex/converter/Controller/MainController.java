@@ -55,7 +55,7 @@ public class MainController {
                 .toFile(new File("./ResourceFiles/"+fileName+".tex"), OutputFormat.LATEX)
                 .convert();
         documentConverter.fromFile(new File("./ResourceFiles/"+fileName+".tex"), InputFormat.LATEX)
-                .toFile(new File("converter/downloadFile/"+fileName+".pdf"),OutputFormat.PDF)
+                .toFile(new File("./ResourceFiles"+fileName+".pdf"),OutputFormat.PDF)
                 .convert();
         System.out.println("\nConversion successful!\nFile converted: " + fileName);
 
@@ -65,19 +65,21 @@ public class MainController {
 
     @PostMapping("/uploadMultipleFiles")
     public List<UploadFileResponse> uploadMultipleFiles(@RequestParam("files") MultipartFile[] files) {
+        String fileName;
 
-        /*
-            There should be a conversion.
-         */
+        for (MultipartFile file : files){
+            fileName = fileStorageService.storeFile(file);
+            documentConverter.fromFile(new File("./ResourceFiles/"+fileName), InputFormat.TWIKI)
+                    .toFile(new File("./ResourceFiles/"+fileName+".tex"), OutputFormat.LATEX)
+                    .convert();
+            documentConverter.fromFile(new File("./ResourceFiles/"+fileName+".tex"), InputFormat.LATEX)
+                    .toFile(new File("./ResourceFiles"+fileName+".pdf"),OutputFormat.PDF)
+                    .convert();
+            System.out.println("\nConversion successful!\nFile converted: " + fileName);
+        }
 
-        for (MultipartFile file : files)
-            System.out.println("\nConversion successful!\nFile converted: " + fileStorageService.storeFile(file));
-
-        return Arrays.asList(files)
-                .stream()
-                .map(file -> {
-                        return uploadFile(file);
-                })
+        return Arrays.stream(files)
+                .map(this::uploadFile)
                 .collect(Collectors.toList());
     }
 
