@@ -60,7 +60,7 @@ public class MainController {
                 .toFile(new File("./ResourceFiles/"+fileName+".tex"), OutputFormat.LATEX)
                 .convert();
         documentConverter.fromFile(new File("./ResourceFiles/"+fileName+".tex"), InputFormat.LATEX)
-                .toFile(new File("./ResourceFiles/"+fileName+".docx"),OutputFormat.DOCX)
+                .toFile(new File("./ResourceFiles/"+fileName+".pdf"),OutputFormat.PDF)
                 .convert();
 
         System.out.println("\nConversion successful!\nFile converted: " + fileName);
