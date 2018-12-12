@@ -56,12 +56,12 @@ public class MainController {
 
         fileName = parser(fileName);
 
-        /*documentConverter.fromFile(new File("./ResourceFiles/"+fileName), InputFormat.TWIKI)
+        documentConverter.fromFile(new File("./ResourceFiles/"+fileName), InputFormat.TWIKI)
                 .toFile(new File("./ResourceFiles/"+fileName+".tex"), OutputFormat.LATEX)
                 .convert();
         documentConverter.fromFile(new File("./ResourceFiles/"+fileName+".tex"), InputFormat.LATEX)
                 .toFile(new File("./ResourceFiles/"+fileName+".docx"),OutputFormat.DOCX)
-                .convert();*/
+                .convert();
 
         System.out.println("\nConversion successful!\nFile converted: " + fileName);
 
@@ -76,14 +76,14 @@ public class MainController {
         for (MultipartFile file : files){
             fileName = fileStorageService.storeFile(file);
             fileName = parser(fileName);
-            /*
-            documentConverter.fromFile(new File("./ResourceFiles/"+fileName), InputFormat.TWIKI)
+
+            /*documentConverter.fromFile(new File("./ResourceFiles/"+fileName), InputFormat.TWIKI)
                     .toFile(new File("./ResourceFiles/"+fileName+".tex"), OutputFormat.LATEX)
                     .convert();
             documentConverter.fromFile(new File("./ResourceFiles/"+fileName+".tex"), InputFormat.LATEX)
-                    .toFile(new File("./ResourceFiles/"+fileName+".pdf"),OutputFormat.PDF)
-                    .convert();
-                    */
+                    .toFile(new File("./ResourceFiles/"+fileName+".docx"),OutputFormat.DOCX)
+                    .convert();*/
+
             System.out.println("\nConversion successful!\nFile converted: " + fileName);
         }
 
@@ -125,7 +125,7 @@ public class MainController {
         Runtime runtime = Runtime.getRuntime();
 
         try {
-            runtime.exec("cmd /c start cmd.exe /c \"parser " + "./ResourceFiles/" + fileName + " > ./ResourceFiles/" + outputFile + ".tex\"").waitFor();
+            runtime.exec("cmd /c start cmd.exe /c \"parser " + "./ResourceFiles/" + fileName + " > ./ResourceFiles/" + outputFile + "\"").waitFor();
 
             return outputFile;
         }

@@ -1,0 +1,35 @@
+
+
+
+
+Cząstka (jon) o masie \( m \) i ładunku \( q \) wyemitowana ze źródła Z zostaje przyspieszona napięciem \( U \) po czym wlatuje w obszar jednorodnego pola magnetycznego \( B \) prostopadłego do toru cząstki. (Pamiętaj, że symbol \( \odot \) oznacza wektor skierowany przed płaszczyznę rysunku, a symbolem ⊗ oznaczamy wektor skierowany za płaszczyznę rysunku). Pole magnetyczne zakrzywia tor cząstki, tak że porusza się ona po półokręgu o promieniu \( R \), po czym zostaje zarejestrowana w detektorze (np. na kliszy fotograficznej) w odległości \( 2R \) od miejsca wejścia w pole magnetyczne.
+
+Promień okręgu po jakim porusza się naładowana cząstka w polu \( B \) obliczyliśmy w ostatnim ćwiczeniu
+
+<div class="openaghmathjax-block" style="text-align: center;"><div class="openaghmathjax-wzor">\( \begin{equation}{R=\frac{\mathit{mv}}{{qB}}}\end{equation} \)</div></div>
+
+gdzie \( v \) jest prędkością z jaką porusza się cząstka. Tę prędkość uzyskuje ona dzięki przyłożonemu napięciu \( U \). Zmiana energii potencjalnej ładunku przy pokonywaniu różnicy potencjału \( U \) jest równa energii kinetycznej jaką uzyskuje ładunek
+
+<div class="openaghmathjax-block" style="text-align: center;"><div class="openaghmathjax-wzor">\( \begin{equation}{\mathit{\Delta E}_{{k}}=\mathit{\Delta E}_{{p}}}\end{equation} \)</div></div>
+
+lub
+
+<div class="openaghmathjax-block" style="text-align: center;"><div class="openaghmathjax-wzor">\( \begin{equation}{\frac{\mathit{mv}^{{2}}}{2}={qU}}\end{equation} \)</div></div>
+
+Stąd otrzymujemy wyrażenie na prędkość \( v \)
+
+<div class="openaghmathjax-block" style="text-align: center;"><div class="openaghmathjax-wzor">\( \begin{equation}{v=\sqrt{\frac{2{qU}}{m}}}\end{equation} \)</div></div>
+
+i podstawiamy je do równania ((Ruch naładowanych cząstek w polu magnetycznym|#r22.3|( 1 )))
+
+<div class="openaghmathjax-block" style="text-align: center;"><div class="openaghmathjax-wzor">\( \begin{equation}{R=\frac{1}{B}\sqrt{\frac{2\text{mU}}{q}}}\end{equation} \)</div></div>
+
+Ostatecznie po przekształceniu otrzymujemy
+
+<div class="openaghmathjax-block" style="text-align: center;"><div class="openaghmathjax-wzor">\( \begin{equation}{m=\frac{R^{{2}}B^{{2}}q}{2U}}\end{equation} \)</div></div>
+
+Widzimy, że pomiar odległości (\( 2R \)), w jakiej została zarejestrowana cząstka pozwala na wyznaczenie jej masy m.
+
+Zakrzywianie toru cząstek w polu magnetycznym jest również wykorzystywane w urządzeniach zwanych akceleratorami. Te urządzenia służące do przyspieszania cząstek naładowanych, znalazły szerokie zastosowanie w nauce, technice i medycynie. Przykładem akceleratora cyklicznego jest cyklotron. O jego działaniu możesz przeczytać w module ((Cyklotron)).
+
+
