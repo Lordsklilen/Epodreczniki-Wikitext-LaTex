@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.Arrays;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,6 +42,8 @@ public class MainController {
         return "index page";
     }
 
+    AtomicInteger i = new AtomicInteger(0);
+
 
     @PostMapping("/uploadFile")
     public UploadFileResponse uploadFile(@RequestParam("file") MultipartFile file){
@@ -51,12 +54,15 @@ public class MainController {
                 .path(fileName)
                 .toUriString();
 
-        documentConverter.fromFile(new File("./ResourceFiles/"+fileName), InputFormat.TWIKI)
+        fileName = parser(fileName);
+
+        /*documentConverter.fromFile(new File("./ResourceFiles/"+fileName), InputFormat.TWIKI)
                 .toFile(new File("./ResourceFiles/"+fileName+".tex"), OutputFormat.LATEX)
                 .convert();
         documentConverter.fromFile(new File("./ResourceFiles/"+fileName+".tex"), InputFormat.LATEX)
-                .toFile(new File("converter/downloadFile/"+fileName+".pdf"),OutputFormat.PDF)
-                .convert();
+                .toFile(new File("./ResourceFiles/"+fileName+".docx"),OutputFormat.DOCX)
+                .convert();*/
+
         System.out.println("\nConversion successful!\nFile converted: " + fileName);
 
         return new UploadFileResponse(fileName, fileDownloadUri,
@@ -65,19 +71,24 @@ public class MainController {
 
     @PostMapping("/uploadMultipleFiles")
     public List<UploadFileResponse> uploadMultipleFiles(@RequestParam("files") MultipartFile[] files) {
+        String fileName;
 
-        /*
-            There should be a conversion.
-         */
+        for (MultipartFile file : files){
+            fileName = fileStorageService.storeFile(file);
+            fileName = parser(fileName);
+            /*
+            documentConverter.fromFile(new File("./ResourceFiles/"+fileName), InputFormat.TWIKI)
+                    .toFile(new File("./ResourceFiles/"+fileName+".tex"), OutputFormat.LATEX)
+                    .convert();
+            documentConverter.fromFile(new File("./ResourceFiles/"+fileName+".tex"), InputFormat.LATEX)
+                    .toFile(new File("./ResourceFiles/"+fileName+".pdf"),OutputFormat.PDF)
+                    .convert();
+                    */
+            System.out.println("\nConversion successful!\nFile converted: " + fileName);
+        }
 
-        for (MultipartFile file : files)
-            System.out.println("\nConversion successful!\nFile converted: " + fileStorageService.storeFile(file));
-
-        return Arrays.asList(files)
-                .stream()
-                .map(file -> {
-                        return uploadFile(file);
-                })
+        return Arrays.stream(files)
+                .map(this::uploadFile)
                 .collect(Collectors.toList());
     }
 
@@ -106,5 +117,22 @@ public class MainController {
                  */
                 .header(HttpHeaders.CONTENT_DISPOSITION, "inline; filename=\"" + resource.getFilename() + "\"")
                 .body(resource);
+    }
+
+    public String parser(String fileName){
+        String outputFile = "converted" + i.incrementAndGet();
+
+        Runtime runtime = Runtime.getRuntime();
+
+        try {
+            runtime.exec("cmd /c start cmd.exe /c \"parser " + "./ResourceFiles/" + fileName + " > ./ResourceFiles/" + outputFile + ".tex\"").waitFor();
+
+            return outputFile;
+        }
+        catch (Exception e){
+            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+            e.printStackTrace();
+            return "0";
+        }
     }
 }
