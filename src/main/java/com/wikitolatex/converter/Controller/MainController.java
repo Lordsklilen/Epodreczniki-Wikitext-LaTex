@@ -59,9 +59,9 @@ public class MainController {
         documentConverter.fromFile(new File("./ResourceFiles/"+fileName), InputFormat.MEDIAWIKI)
                 .toFile(new File("./ResourceFiles/"+fileName+".tex"), OutputFormat.LATEX)
                 .convert();
-        documentConverter.fromFile(new File("./ResourceFiles/"+fileName+".tex"), InputFormat.LATEX)
+        /*documentConverter.fromFile(new File("./ResourceFiles/"+fileName+".tex"), InputFormat.LATEX)
                 .toFile(new File("./ResourceFiles/"+fileName+".pdf"),OutputFormat.PDF)
-                .convert();
+                .convert();*/
 
         System.out.println("\nConversion successful!\nFile converted: " + fileName);
 
@@ -120,7 +120,7 @@ public class MainController {
     }
 
     public String parser(String fileName){
-        String outputFile = fileName;
+        String outputFile = fileName+".parsed";
 
         Runtime runtime = Runtime.getRuntime();
 
