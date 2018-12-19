@@ -41,7 +41,6 @@ public class DocumentConverter {
         path = ArrayHelper.pop(path);
         String res = String.join("\\",path);
         res+="\\pandoc.exe";
-        // res ="E:\\Dane\\zad dom\\GitHub\\pandoc.exe";
         System.out.println(res);
         settings.setPandocExec(res);
         extraOptions = "";
