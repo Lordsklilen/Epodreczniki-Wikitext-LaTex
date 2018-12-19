@@ -56,7 +56,7 @@ public class MainController {
 
         fileName = parser(fileName);
 
-        documentConverter.fromFile(new File("./ResourceFiles/"+fileName), InputFormat.TWIKI)
+        documentConverter.fromFile(new File("./ResourceFiles/"+fileName), InputFormat.MEDIAWIKI)
                 .toFile(new File("./ResourceFiles/"+fileName+".tex"), OutputFormat.LATEX)
                 .convert();
         documentConverter.fromFile(new File("./ResourceFiles/"+fileName+".tex"), InputFormat.LATEX)
