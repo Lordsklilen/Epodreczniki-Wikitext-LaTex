@@ -120,7 +120,7 @@ public class MainController {
     }
 
     public String parser(String fileName){
-        String outputFile = "converted" + i.incrementAndGet();
+        String outputFile = fileName;
 
         Runtime runtime = Runtime.getRuntime();
 
