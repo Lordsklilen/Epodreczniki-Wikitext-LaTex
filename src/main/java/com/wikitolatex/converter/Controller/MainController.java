@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.Arrays;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import org.slf4j.Logger;
@@ -55,16 +56,22 @@ public class MainController {
                 .toUriString();
 
         fileName = parser(fileName);
+        try {
+            TimeUnit.SECONDS.sleep(1);
+            documentConverter.fromFile(new File("./ResourceFiles/" + fileName), InputFormat.MEDIAWIKI)
+                    .toFile(new File("./ResourceFiles/" + fileName + ".tex"), OutputFormat.LATEX)
+                    .convert();
+            TimeUnit.SECONDS.sleep(1);
+            documentConverter.fromFile(new File("./ResourceFiles/" + fileName + ".tex"), InputFormat.LATEX)
+                    .toFile(new File("./ResourceFiles/" + fileName + ".pdf"), OutputFormat.PDF)
+                    .convert();
+            TimeUnit.SECONDS.sleep(1);
 
-        documentConverter.fromFile(new File("./ResourceFiles/"+fileName), InputFormat.MEDIAWIKI)
-                .toFile(new File("./ResourceFiles/"+fileName+".tex"), OutputFormat.LATEX)
-                .convert();
-        documentConverter.fromFile(new File("./ResourceFiles/"+fileName+".tex"), InputFormat.LATEX)
-                .toFile(new File("./ResourceFiles/"+fileName+".pdf"),OutputFormat.PDF)
-                .convert();
-
-        System.out.println("\nConversion successful!\nFile converted: " + fileName);
-
+            System.out.println("\nConversion successful!\nFile converted: " + fileName);
+        }
+        catch (Exception ex){
+            System.out.println("\nConversion unsuccessful!\nFile not converted");
+        }
         return new UploadFileResponse(fileName, fileDownloadUri,
                 file.getContentType(), file.getSize());
     }

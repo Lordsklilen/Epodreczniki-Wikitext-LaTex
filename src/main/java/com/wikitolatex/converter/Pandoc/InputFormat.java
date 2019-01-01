@@ -28,6 +28,7 @@ public enum InputFormat {
     ORG("org"),
     RST("rst"),
     T2T("t2t"),
+    TIKIWIKI("tikiwiki"),
     TEXTILE("textile"),
     TWIKI("twiki");
 
