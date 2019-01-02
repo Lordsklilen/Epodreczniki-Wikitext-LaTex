@@ -58,14 +58,17 @@ public class MainController {
         fileName = parser(fileName);
         try {
             TimeUnit.SECONDS.sleep(1);
-            documentConverter.fromFile(new File("./ResourceFiles/" + fileName), InputFormat.MEDIAWIKI)
+            documentConverter.fromFile(new File("./ResourceFiles/" + fileName), InputFormat.HTML)
+                    .toFile(new File("./ResourceFiles/" + fileName + ".media"), OutputFormat.MEDIAWIKI)
+                    .convert();
+            TimeUnit.SECONDS.sleep(1);
+            documentConverter.fromFile(new File("./ResourceFiles/" + fileName + ".media"), InputFormat.MEDIAWIKI)
                     .toFile(new File("./ResourceFiles/" + fileName + ".tex"), OutputFormat.LATEX)
                     .convert();
             TimeUnit.SECONDS.sleep(1);
             documentConverter.fromFile(new File("./ResourceFiles/" + fileName + ".tex"), InputFormat.LATEX)
                     .toFile(new File("./ResourceFiles/" + fileName + ".pdf"), OutputFormat.PDF)
                     .convert();
-            TimeUnit.SECONDS.sleep(1);
 
             System.out.println("\nConversion successful!\nFile converted: " + fileName);
         }

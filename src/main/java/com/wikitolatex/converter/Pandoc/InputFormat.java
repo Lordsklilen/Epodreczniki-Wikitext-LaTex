@@ -14,6 +14,7 @@ public enum InputFormat {
     EPUB("epub"),
     HADDOCK("haddock"),
     HTML("html"),
+    HTML5("html5"),
     JSON("json"),
     LATEX("latex"),
     MARKDOWN("markdown"),
