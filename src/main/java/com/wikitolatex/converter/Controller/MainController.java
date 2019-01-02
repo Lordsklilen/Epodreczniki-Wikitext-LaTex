@@ -58,11 +58,7 @@ public class MainController {
         fileName = parser(fileName);
         try {
             TimeUnit.SECONDS.sleep(1);
-            documentConverter.fromFile(new File("./ResourceFiles/" + fileName), InputFormat.HTML)
-                    .toFile(new File("./ResourceFiles/" + fileName + ".media"), OutputFormat.MEDIAWIKI)
-                    .convert();
-            TimeUnit.SECONDS.sleep(1);
-            documentConverter.fromFile(new File("./ResourceFiles/" + fileName + ".media"), InputFormat.MEDIAWIKI)
+            documentConverter.fromFile(new File("./ResourceFiles/" + fileName), InputFormat.MEDIAWIKI)
                     .toFile(new File("./ResourceFiles/" + fileName + ".tex"), OutputFormat.LATEX)
                     .convert();
             TimeUnit.SECONDS.sleep(1);
